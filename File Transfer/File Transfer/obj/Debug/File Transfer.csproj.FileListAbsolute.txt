@@ -1,0 +1,87 @@
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File_Transfer.mainForm.resources
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.Cache
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File Transfer.csprojResolveAssemblyReference.cache
+F:\4th Year, 1st Term\Computer Networks\LAB\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.mainForm.resources
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Desktop\CSEKU-CN-2017-FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.mainForm.resources
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Desktop\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.txt_OutputFile.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileTransferApplication\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.txt_OutputFile.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.txt_OutputFile.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.txt_OutputFile.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe.config
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\bin\Debug\File Transfer.pdb
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.txt_OutputFile.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.NotificationForm.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File_Transfer.Properties.Resources.resources
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.GenerateResource.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.exe
+C:\Users\Administrator\Documents\Môn học\Cơ sở an toàn bảo mật thông tin\FileReceiveApplication - Copy - Copy - Copy\File Transfer\File Transfer\obj\Debug\File Transfer.pdb
