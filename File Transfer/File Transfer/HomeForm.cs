@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;   
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 using System.Threading;
-using System.Security.Cryptography;
-using System.Runtime.InteropServices;
-
 namespace File_Transfer
 {
     public partial class txt_OutputFile : Form
@@ -46,46 +38,7 @@ namespace File_Transfer
         public static extern bool ZeroMemory(IntPtr Destination, int Length);
 
         
-        //private void EncryptFile(string inputFile, string outputFile, byte[] key, byte[] iv)
-        //{
-        //    using (Aes aesAlg = Aes.Create())
-        //    {
-        //        aesAlg.Key = key;
-        //        aesAlg.IV = iv;
-
-        //        using (FileStream inputStream = new FileStream(inputFile, FileMode.Open))
-        //        {
-        //            using (FileStream outputStream = new FileStream(outputFile, FileMode.Create))
-        //            {
-        //                using (CryptoStream encryptor = new CryptoStream(outputStream, aesAlg.CreateEncryptor(), CryptoStreamMode.Write))
-        //                {
-        //                    inputStream.CopyTo(encryptor);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        //private void DecryptFile(string inputFile, string outputFile, byte[] key, byte[] iv)
-        //{
-        //    using (Aes aesAlg = Aes.Create())
-        //    {
-        //        aesAlg.Key = key;
-        //        aesAlg.IV = iv;
-
-        //        // Decrypt the file
-        //        using (FileStream fsInput = new FileStream(inputFile, FileMode.Open))
-        //        {
-        //            using (FileStream fsDecrypted = new FileStream(outputFile, FileMode.Create))
-        //            {
-        //                using (CryptoStream decryptor = new CryptoStream(fsInput, aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV), CryptoStreamMode.Read))
-        //                {
-        //                    decryptor.CopyTo(fsDecrypted);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+       
         public txt_OutputFile()
         {
             InitializeComponent();
@@ -453,6 +406,8 @@ namespace File_Transfer
         private void clearButton_Click(object sender, EventArgs e)
         {
             fileNameLabel.Text = ".";
+            txtKey.Text = "";
+            txtIV.Text = "";
             timer1.Stop();
         }
 
@@ -529,7 +484,6 @@ namespace File_Transfer
 
         private void btn_Decrypt_Click(object sender, EventArgs e)
         {
-         
             try
             {
                 // Đọc key từ trường văn bản

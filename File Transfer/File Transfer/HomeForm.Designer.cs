@@ -270,9 +270,9 @@
             this.savePathLabel.Location = new System.Drawing.Point(453, 60);
             this.savePathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.savePathLabel.Name = "savePathLabel";
-            this.savePathLabel.Size = new System.Drawing.Size(199, 20);
+            this.savePathLabel.Size = new System.Drawing.Size(263, 20);
             this.savePathLabel.TabIndex = 10;
-            this.savePathLabel.Text = "C:\\Users\\Public\\Downloads";
+            this.savePathLabel.Text = "C:\\Users\\Administrator\\Desktop\\test";
             this.savePathLabel.Click += new System.EventHandler(this.savePathLabel_Click);
             // 
             // ipBox
@@ -419,7 +419,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "txt_OutputFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "File Transfer Application - Computer Networks Laboratory Project";
+            this.Text = "File Transfer AES";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.panel1.ResumeLayout(false);
