@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace File_Transfer
 {
     public partial class txt_OutputFile : Form
@@ -31,6 +32,7 @@ namespace File_Transfer
         string senderMachineName;
         string targetIP;
         string targetName;
+        string selectedOption;
         NotificationForm f2;
 
         //  Call this function to remove the key from memory after use for security
@@ -42,7 +44,7 @@ namespace File_Transfer
         public txt_OutputFile()
         {
             InitializeComponent();
-           
+            CB_AES.SelectedIndex = 0;
         }
         
         private void mainForm_Load(object sender, EventArgs e)
@@ -286,6 +288,36 @@ namespace File_Transfer
                    
                     else
                     {
+
+                           
+                            selectedOption = CB_AES.SelectedItem.ToString();
+                            if (selectedOption == "128")
+                            {
+                                if (txtKey.TextLength != 32)
+                                {
+                                    MessageBox.Show("Length of key should be 32 for 128 bits key size");
+                                    return;
+                                }
+                            }
+                            if (selectedOption == "192")
+                            {
+                                if (txtKey.TextLength != 48)
+                                {
+                                    MessageBox.Show("Length of key should be 48 for 128 bits key size");
+                                    return;
+
+
+                                }
+                            }
+                            if (selectedOption == "256")
+                            {
+                                if (txtKey.TextLength != 64)
+                                {
+                                    MessageBox.Show("Length of key should be 64 for 128 bits key size");
+                                    return;
+                                }
+                            }
+                        
                         notification = new Thread(new ThreadStart(showNotification));
                         notification.Start();
                         //notificationPanel.Visible = true;
@@ -454,6 +486,7 @@ namespace File_Transfer
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
 
         }
 
@@ -464,7 +497,7 @@ namespace File_Transfer
 
         private void keyBox_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void aesLength(object sender, EventArgs e)
@@ -492,7 +525,7 @@ namespace File_Transfer
 
                 // Lấy đường dẫn file đã được mã hóa
                 string encryptedFilePath = fileNameLabel.Text;
-
+                
                 // Tạo đường dẫn cho file giải mã
                 string decryptedFilePath = Path.Combine(savePathLabel.Text, "Decrypted.txt");
 
@@ -510,11 +543,11 @@ namespace File_Transfer
         {
             hex = hex.Replace(" ", ""); // Remove any spaces
             int length = hex.Length;
-
-            if (length % 2 != 0)
-            {
-                throw new ArgumentException("Invalid hexadecimal string: length must be even.");
-            }
+            
+            //if (length % 2 != 0)
+            //{
+            //    throw new ArgumentException("Invalid hexadecimal string: length must be even.");
+            //}
 
             byte[] bytes = new byte[length / 2];
             for (int i = 0; i < length; i += 2)

@@ -51,7 +51,7 @@
             this.notificationPanel = new System.Windows.Forms.Panel();
             this.notificationTempLabel = new System.Windows.Forms.Label();
             this.txtKey = new System.Windows.Forms.TextBox();
-            this.AES = new System.Windows.Forms.ComboBox();
+            this.CB_AES = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Decrypt = new System.Windows.Forms.Button();
@@ -330,19 +330,19 @@
             this.txtKey.TabIndex = 14;
             this.txtKey.TextChanged += new System.EventHandler(this.keyBox_TextChanged);
             // 
-            // AES
+            // CB_AES
             // 
-            this.AES.FormattingEnabled = true;
-            this.AES.Items.AddRange(new object[] {
+            this.CB_AES.FormattingEnabled = true;
+            this.CB_AES.Items.AddRange(new object[] {
             "128",
             "192",
             "256"});
-            this.AES.Location = new System.Drawing.Point(501, 399);
-            this.AES.Name = "AES";
-            this.AES.Size = new System.Drawing.Size(90, 28);
-            this.AES.TabIndex = 15;
-            this.AES.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.AES.TextChanged += new System.EventHandler(this.aesLength);
+            this.CB_AES.Location = new System.Drawing.Point(501, 399);
+            this.CB_AES.Name = "CB_AES";
+            this.CB_AES.Size = new System.Drawing.Size(90, 28);
+            this.CB_AES.TabIndex = 15;
+            this.CB_AES.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.CB_AES.TextChanged += new System.EventHandler(this.aesLength);
             // 
             // label2
             // 
@@ -377,7 +377,7 @@
             // 
             this.txtIV.Location = new System.Drawing.Point(59, 439);
             this.txtIV.Name = "txtIV";
-            this.txtIV.Size = new System.Drawing.Size(152, 26);
+            this.txtIV.Size = new System.Drawing.Size(382, 26);
             this.txtIV.TabIndex = 19;
             // 
             // IV
@@ -400,7 +400,7 @@
             this.Controls.Add(this.btn_Decrypt);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.AES);
+            this.Controls.Add(this.CB_AES);
             this.Controls.Add(this.txtKey);
             this.Controls.Add(this.notificationPanel);
             this.Controls.Add(this.label1);
@@ -454,7 +454,7 @@
         private System.Windows.Forms.Panel notificationPanel;
         private System.Windows.Forms.Label notificationTempLabel;
         private System.Windows.Forms.TextBox txtKey;
-        private System.Windows.Forms.ComboBox AES;
+        private System.Windows.Forms.ComboBox CB_AES;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_Decrypt;
