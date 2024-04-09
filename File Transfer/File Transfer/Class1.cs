@@ -1,14 +1,19 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace File_Transfer
 {
-    class Class1
-    {
-        static byte[,] sBox = new byte[16, 16] {
-        // S-Box
-        {0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76},
+
+        class Class1
+        {
+            static byte[,] sBox = new byte[16, 16]
+            {
+             {0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76},
         {0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0},
         {0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15},
         {0x04, 0xC7, 0x23, 0xC3, 0x18, 0x96, 0x05, 0x9A, 0x07, 0x12, 0x80, 0xE2, 0xEB, 0x27, 0xB2, 0x75},
@@ -24,11 +29,12 @@ namespace File_Transfer
         {0x70, 0x3E, 0xB5, 0x66, 0x48, 0x03, 0xF6, 0x0E, 0x61, 0x35, 0x57, 0xB9, 0x86, 0xC1, 0x1D, 0x9E},
         {0xE1, 0xF8, 0x98, 0x11, 0x69, 0xD9, 0x8E, 0x94, 0x9B, 0x1E, 0x87, 0xE9, 0xCE, 0x55, 0x28, 0xDF},
         {0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16}
-    };
+            };
 
-        static byte[,] invSBox = new byte[16, 16] {
-        // Inverse S-Box
-        {0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB},
+            static byte[,] invSBox = new byte[16, 16]
+            {
+            // Inverse S-box
+             {0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB},
         {0x7C, 0xE3, 0x39, 0x82, 0x9B, 0x2F, 0xFF, 0x87, 0x34, 0x8E, 0x43, 0x44, 0xC4, 0xDE, 0xE9, 0xCB},
         {0x54, 0x7B, 0x94, 0x32, 0xA6, 0xC2, 0x23, 0x3D, 0xEE, 0x4C, 0x95, 0x0B, 0x42, 0xFA, 0xC3, 0x4E},
         {0x08, 0x2E, 0xA1, 0x66, 0x28, 0xD9, 0x24, 0xB2, 0x76, 0x5B, 0xA2, 0x49, 0x6D, 0x8B, 0xD1, 0x25},
@@ -44,409 +50,401 @@ namespace File_Transfer
         {0x60, 0x51, 0x7F, 0xA9, 0x19, 0xB5, 0x4A, 0x0D, 0x2D, 0xE5, 0x7A, 0x9F, 0x93, 0xC9, 0x9C, 0xEF},
         {0xA0, 0xE0, 0x3B, 0x4D, 0xAE, 0x2A, 0xF5, 0xB0, 0xC8, 0xEB, 0xBB, 0x3C, 0x83, 0x53, 0x99, 0x61},
         {0x17, 0x2B, 0x04, 0x7E, 0xBA, 0x77, 0xD6, 0x26, 0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D}
-    };
+            };
 
-        static byte[] Rcon = new byte[] {
-        // Round constant
-        0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1B, 0x36
-    };
+          public  static int Nr; // Number of rounds
+          public  static int Nk; // Number of 32-bit words comprising the key
+          public  static int Nb = 4; // Number of columns (32-bit words) comprising the State
 
-        static byte[][] KeyExpansion(byte[] key)
-        {
-            byte[][] expandedKeys = new byte[11][];
-            for (int i = 0; i < 11; i++)
+            static byte[] keySchedule; // Expanded key schedule
+
+            static byte[,] state = new byte[4, 4]; // AES state matrix
+            //static void Main(string[] args)
+            //{
+            //    string inputFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\input.txt";
+            //    string encryptedFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\ecrypt.txt";
+            //    string decryptedFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\decrypt.txt";
+            //    string key = "abcdefghijklmnopqrstuvwx"; // 24-byte key for AES-192
+
+            //    // Determine Nk based on key length
+            //    if (key.Length == 16) Nk = 4; // AES-128
+            //    else if (key.Length == 24) Nk = 6; // AES-192
+            //    else if (key.Length == 32) Nk = 8; // AES-256
+            //    else throw new ArgumentException("Invalid key length");
+
+            //    // Determine Nr based on Nk
+            //    Nr = Nk + 6;
+
+            //    // Generate key schedule
+            //    KeyExpansion(key);
+
+            //    // Encrypt file
+            //    //EncryptFile(inputFile, encryptedFile, key);
+
+            //    // Decrypt file
+            //    DecryptFile(encryptedFile, decryptedFile, key);
+
+            //    Console.WriteLine("Encryption and decryption completed.");
+            //}
+            static void SubBytes()
             {
-                expandedKeys[i] = new byte[16];
-            }
-
-            // Copy the original key to the first entry of the expandedKeys array
-            Array.Copy(key, 0, expandedKeys[0], 0, 16);
-
-            for (int i = 1; i < 11; i++)
-            {
-                byte[] temp = new byte[4];
-                Array.Copy(expandedKeys[i - 1], 12, temp, 0, 4);
-
-                // Rotate the bytes
-                byte tempByte = temp[0];
-                temp[0] = temp[1];
-                temp[1] = temp[2];
-                temp[2] = temp[3];
-                temp[3] = tempByte;
-
-                // Substitute each byte
-                for (int j = 0; j < 4; j++)
+                for (int i = 0; i < 4; i++)
                 {
-                    temp[j] = sBox[temp[j] >> 4, temp[j] & 0x0F];
-                }
-
-                temp[0] ^= Rcon[i - 1];
-
-                for (int j = 0; j < 4; j++)
-                {
-                    for (int k = 0; k < 4; k++)
+                    for (int j = 0; j < 4; j++)
                     {
-                        expandedKeys[i][4 * j + k] = (byte)(expandedKeys[i - 1][4 * j + k] ^ temp[j]);
+                        state[i, j] = sBox[state[i, j] >> 4, state[i, j] & 0x0F];
                     }
                 }
             }
 
-            return expandedKeys;
-        }
-
-        static byte[][] InvKeyExpansion(byte[] key)
-        {
-            byte[][] expandedKeys = new byte[11][];
-            for (int i = 0; i < 11; i++)
+            static void ShiftRows()
             {
-                expandedKeys[i] = new byte[16];
-            }
+                byte[,] temp = new byte[4, 4];
 
-            // Copy the original key to the last entry of the expandedKeys array
-            Array.Copy(key, 0, expandedKeys[10], 0, 16);
-
-            for (int i = 9; i >= 0; i--)
-            {
-                byte[] temp = new byte[4];
-                Array.Copy(expandedKeys[i + 1], 12, temp, 0, 4);
-
-                // Rotate the bytes
-                byte tempByte = temp[3];
-                temp[3] = temp[2];
-                temp[2] = temp[1];
-                temp[1] = temp[0];
-                temp[0] = tempByte;
-
-                // Substitute each byte
-                for (int j = 0; j < 4; j++)
+                for (int i = 0; i < 4; i++)
                 {
-                    temp[j] = invSBox[temp[j] >> 4, temp[j] & 0x0F];
+                    for (int j = 0; j < 4; j++)
+                    {
+                        temp[i, j] = state[i, (j + i) % 4];
+                    }
                 }
 
-                temp[0] ^= Rcon[i];
+                state = temp;
+            }
 
-                for (int j = 0; j < 4; j++)
+            static void MixColumns()
+            {
+                byte[,] temp = new byte[4, 4]
                 {
-                    for (int k = 0; k < 4; k++)
+                    { 0x02, 0x03, 0x01, 0x01 },
+                    { 0x01, 0x02, 0x03, 0x01 },
+                    { 0x01, 0x01, 0x02, 0x03 },
+                    { 0x03, 0x01, 0x01, 0x02 }
+                };
+
+                byte[,] result = new byte[4, 4];
+
+                for (int col = 0; col < 4; col++)
+                {
+                    for (int row = 0; row < 4; row++)
                     {
-                        expandedKeys[i][4 * j + k] = (byte)(expandedKeys[i + 1][4 * j + k] ^ temp[j]);
+                        byte val = 0;
+                        for (int k = 0; k < 4; k++)
+                        {
+                            val ^= Multiply(temp[row, k], state[k, col]);
+                        }
+                        result[row, col] = val;
+                    }
+                }
+
+                state = result;
+            }
+
+            static byte Multiply(byte a, byte b)
+            {
+                byte p = 0;
+                byte counter;
+                byte hi_bit_set;
+                for (counter = 0; counter < 8; counter++)
+                {
+                    if ((b & 1) != 0)
+                    {
+                        p ^= a;
+                    }
+                    hi_bit_set = (byte)(a & 0x80);
+                    a <<= 1;
+                    if (hi_bit_set != 0)
+                    {
+                        a ^= 0x1B; /* x^8 + x^4 + x^3 + x + 1 */
+                    }
+                    b >>= 1;
+                }
+                return p;
+            }
+
+            static void InvSubBytes()
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        state[i, j] = invSBox[state[i, j] >> 4, state[i, j] & 0x0F];
                     }
                 }
             }
 
-            return expandedKeys;
-        }
-
-        static byte[] Encrypt(byte[] input, byte[] key)
-        {
-            byte[][] state = new byte[4][];
-            for (int i = 0; i < 4; i++)
+            static void InvShiftRows()
             {
-                state[i] = new byte[4];
-            }
+                byte[,] temp = new byte[4, 4];
 
-            byte[][] roundKeys = KeyExpansion(key);
-
-            int roundCount = roundKeys.Length / 16;
-
-            int inputOffset = 0;
-            for (int round = 0; round < roundCount - 1; round++)
-            {
-                // AddRoundKey
-                AddRoundKey(state, roundKeys, input, inputOffset);
-                inputOffset += 16;
-
-                // SubBytes
-                SubBytes(state);
-
-                // ShiftRows
-                ShiftRows(state);
-
-                // MixColumns
-                MixColumns(state);
-            }
-
-            // Final round
-            AddRoundKey(state, roundKeys, input, inputOffset);
-
-            byte[] output = new byte[16];
-            for (int i = 0; i < 4; i++)
-            {
-                Array.Copy(state[i], 0, output, i * 4, 4);
-            }
-
-            return output;
-        }
-
-        static byte[] Decrypt(byte[] cipherText, byte[] key)
-        {
-            byte[][] state = new byte[4][];
-            for (int i = 0; i < 4; i++)
-            {
-                state[i] = new byte[4];
-            }
-
-            byte[][] roundKeys = InvKeyExpansion(key);
-            Array.Reverse(roundKeys);
-
-            int roundCount = roundKeys.Length / 16;
-
-            int inputOffset = 0;
-            for (int round = 0; round < roundCount - 1; round++)
-            {
-                // AddRoundKey
-                AddRoundKey(state, roundKeys, cipherText, inputOffset);
-                inputOffset += 16;
-
-                // InvShiftRows
-                InvShiftRows(state);
-
-                // InvSubBytes
-                InvSubBytes(state);
-
-                // InvMixColumns
-                if (round < roundCount - 2)
+                for (int i = 0; i < 4; i++)
                 {
-                    InvMixColumns(state);
+                    for (int j = 0; j < 4; j++)
+                    {
+                        temp[i, j] = state[i, (j - i + 4) % 4];
+                    }
+                }
+
+                state = temp;
+            }
+
+            static void InvMixColumns()
+            {
+                byte[,] temp = new byte[4, 4]
+                {
+        { 0x0E, 0x0B, 0x0D, 0x09 },
+        { 0x09, 0x0E, 0x0B, 0x0D },
+        { 0x0D, 0x09, 0x0E, 0x0B },
+        { 0x0B, 0x0D, 0x09, 0x0E }
+                };
+
+                byte[,] result = new byte[4, 4];
+
+                for (int col = 0; col < 4; col++)
+                {
+                    for (int row = 0; row < 4; row++)
+                    {
+                        byte val = 0;
+                        for (int k = 0; k < 4; k++)
+                        {
+                            val ^= Multiply(temp[row, k], state[k, col]);
+                        }
+                        result[row, col] = val;
+                    }
+                }
+
+                state = result;
+            }
+
+
+           public static void EncryptFile(string inputFile, string outputFile, string key)
+            {
+                byte[] iv = GenerateIV();
+
+                using (FileStream inputStream = new FileStream(inputFile, FileMode.Open))
+                using (FileStream outputStream = new FileStream(outputFile, FileMode.Create))
+                {
+                    outputStream.Write(iv, 0, iv.Length);
+
+                    byte[] buffer = new byte[16];
+                    int bytesRead;
+
+                    while ((bytesRead = inputStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        if (bytesRead < 16) // Padding
+                        {
+                            for (int i = bytesRead; i < 16; i++)
+                            {
+                                buffer[i] = 0x00;
+                            }
+                        }
+
+                        for (int i = 0; i < 16; i++)
+                        {
+                            state[i % 4, i / 4] = buffer[i];
+                        }
+
+                        AddRoundKey(0);
+
+                        for (int round = 1; round < Nr; round++)
+                        {
+                            SubBytes();
+                            ShiftRows();
+                            MixColumns();
+                            AddRoundKey(round);
+                        }
+
+                        SubBytes();
+                        ShiftRows();
+                        AddRoundKey(Nr);
+
+                        // Write encrypted block to output stream
+                        for (int i = 0; i < 16; i++)
+                        {
+                            buffer[i] = state[i % 4, i / 4];
+                        }
+
+                        outputStream.Write(buffer, 0, buffer.Length);
+                    }
                 }
             }
 
-            // Final round
-            AddRoundKey(state, roundKeys, cipherText, inputOffset);
-
-            byte[] output = new byte[16];
-            for (int i = 0; i < 4; i++)
+           public static void DecryptFile(string inputFile, string outputFile, string key)
             {
-                Array.Copy(state[i], 0, output, i * 4, 4);
-            }
-
-            return output;
-        }
-
-        static void AddRoundKey(byte[][] state, byte[][] roundKeys, byte[] input, int inputOffset)
-        {
-            int index = 0;
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
+                using (FileStream inputStream = new FileStream(inputFile, FileMode.Open))
+                using (FileStream outputStream = new FileStream(outputFile, FileMode.Create))
                 {
-                    state[j][i] ^= input[inputOffset + index];
-                    index++;
+                    byte[] iv = new byte[16];
+                    inputStream.Read(iv, 0, iv.Length);
+
+                    byte[] buffer = new byte[16];
+                    int bytesRead;
+
+                    while ((bytesRead = inputStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        for (int i = 0; i < 16; i++)
+                        {
+                            state[i % 4, i / 4] = buffer[i];
+                        }
+
+                        AddRoundKey(Nr);
+
+                        for (int round = Nr - 1; round > 0; round--)
+                        {
+                            InvShiftRows();
+                            InvSubBytes();
+                            AddRoundKey(round);
+                            InvMixColumns();
+                        }
+
+                        InvShiftRows();
+                        InvSubBytes();
+                        AddRoundKey(0);
+
+                        //// Write decrypted block to output stream
+                        //for (int i = 0; i < 16; i++)
+                        //{
+                        //    buffer[i] = state[i % 4, i / 4];
+                        //}
+
+                        //outputStream.Write(buffer, 0, buffer.Length);
+                        //// Remove padding
+                        for (int i = 0; i < 16; i++)
+                        {
+                            if (state[i % 4, i / 4] != 0x00)
+                            {
+                                buffer[i] = state[i % 4, i / 4];
+                                outputStream.WriteByte(buffer[i]);
+                            }
+                            else
+                            {
+                                break; // Stop writing if encounter padding
+                            }
+                        }
+
+                    }
                 }
             }
-        }
 
-        static void SubBytes(byte[][] state)
-        {
-            for (int i = 0; i < 4; i++)
+            public static void KeyExpansion(string key)
             {
-                for (int j = 0; j < 4; j++)
+                keySchedule = new byte[Nb * (Nr + 1) * 4];
+
+                // Initial copy of key into key schedule
+                for (int i = 0; i < Nk * 4; i++)
                 {
-                    state[i][j] = sBox[state[i][j] >> 4, state[i][j] & 0x0F];
-                }
-            }
-        }
-
-        static void InvSubBytes(byte[][] state)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    state[i][j] = invSBox[state[i][j] >> 4, state[i][j] & 0x0F];
-                }
-            }
-        }
-
-        static void ShiftRows(byte[][] state)
-        {
-            for (int i = 1; i < 4; i++)
-            {
-                byte[] temp = new byte[i];
-                Array.Copy(state[i], 0, temp, 0, i);
-                Array.Copy(state[i], i, state[i], 0, 4 - i);
-                Array.Copy(temp, 0, state[i], 4 - i, i);
-            }
-        }
-
-        static void InvShiftRows(byte[][] state)
-        {
-            for (int i = 1; i < 4; i++)
-            {
-                byte[] temp = new byte[4 - i];
-                Array.Copy(state[i], 0, temp, 0, 4 - i);
-                Array.Copy(state[i], 4 - i, state[i], 0, i);
-                Array.Copy(temp, 0, state[i], i, 4 - i);
-            }
-        }
-
-        static void MixColumns(byte[][] state)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                byte[] column = new byte[4];
-                for (int j = 0; j < 4; j++)
-                {
-                    column[j] = state[j][i];
-                }
-                state[0][i] = (byte)(GFMultiply(column[0], 2) ^ GFMultiply(column[1], 3) ^ column[2] ^ column[3]);
-                state[1][i] = (byte)(column[0] ^ GFMultiply(column[1], 2) ^ GFMultiply(column[2], 3) ^ column[3]);
-                state[2][i] = (byte)(column[0] ^ column[1] ^ GFMultiply(column[2], 2) ^ GFMultiply(column[3], 3));
-                state[3][i] = (byte)(GFMultiply(column[0], 3) ^ column[1] ^ column[2] ^ GFMultiply(column[3], 2));
-            }
-        }
-
-        static void InvMixColumns(byte[][] state)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                byte[] column = new byte[4];
-                for (int j = 0; j < 4; j++)
-                {
-                    column[j] = state[j][i];
-                }
-                state[0][i] = (byte)(GFMultiply(column[0], 14) ^ GFMultiply(column[1], 11) ^ GFMultiply(column[2], 13) ^ GFMultiply(column[3], 9));
-                state[1][i] = (byte)(GFMultiply(column[0], 9) ^ GFMultiply(column[1], 14) ^ GFMultiply(column[2], 11) ^ GFMultiply(column[3], 13));
-                state[2][i] = (byte)(GFMultiply(column[0], 13) ^ GFMultiply(column[1], 9) ^ GFMultiply(column[2], 14) ^ GFMultiply(column[3], 11));
-                state[3][i] = (byte)(GFMultiply(column[0], 11) ^ GFMultiply(column[1], 13) ^ GFMultiply(column[2], 9) ^ GFMultiply(column[3], 14));
-            }
-        }
-
-        static byte GMultiply(byte a, byte b)
-        {
-            byte p = 0;
-            byte counter;
-            byte hi_bit_set;
-            for (counter = 0; counter < 8; counter++)
-            {
-                if ((b & 1) != 0)
-                {
-                    p ^= a;
-                }
-                hi_bit_set = (byte)(a & 0x80);
-                a <<= 1;
-                if (hi_bit_set != 0)
-                {
-                    a ^= 0x1B; /* x^8 + x^4 + x^3 + x + 1 */
-                }
-                b >>= 1;
-            }
-            return p;
-        }
-
-        static byte GFMultiply(byte a, byte factor)
-        {
-            byte ret = 0;
-            byte i;
-            for (i = 0; i < 8; i++)
-            {
-                if ((factor & 1) != 0)
-                {
-                    ret ^= a;
-                }
-                bool hi_bit_set = (a & 0x80) != 0;
-                a <<= 1;
-                if (hi_bit_set)
-                {
-                    a ^= 0x1B;
-                }
-                factor >>= 1;
-            }
-            return ret;
-        }
-
-        static byte[] AddPadding(byte[] input)
-        {
-            int paddingLength = 16 - (input.Length % 16);
-            byte[] paddedInput = new byte[input.Length + paddingLength];
-            Array.Copy(input, paddedInput, input.Length);
-            for (int i = input.Length; i < paddedInput.Length; i++)
-            {
-                paddedInput[i] = (byte)paddingLength;
-            }
-            return paddedInput;
-        }
-
-        static byte[] RemovePadding(byte[] input)
-        {
-            int paddingLength = input[input.Length - 1];
-            byte[] unpaddedInput = new byte[input.Length - paddingLength];
-            Array.Copy(input, unpaddedInput, unpaddedInput.Length);
-            return unpaddedInput;
-        }
-
-        public static void EncryptFile(string inputFile, string outputFile, byte[] key, byte[] iv)
-        {
-            byte[] inputBytes = File.ReadAllBytes(inputFile);
-            inputBytes = AddPadding(inputBytes);
-
-            List<byte[]> encryptedBlocks = new List<byte[]>();
-
-            byte[] previousCipherBlock = iv;
-            for (int i = 0; i < inputBytes.Length; i += 16)
-            {
-                byte[] blockToEncrypt = new byte[16];
-                Array.Copy(inputBytes, i, blockToEncrypt, 0, 16);
-
-                for (int j = 0; j < 16; j++)
-                {
-                    blockToEncrypt[j] ^= previousCipherBlock[j];
+                    keySchedule[i] = (byte)key[i];
                 }
 
-                byte[] encryptedBlock = Encrypt(blockToEncrypt, key);
+                int bytesGenerated = Nk * 4;
+                int rconIteration = 1;
+                byte[] temp = new byte[4];
 
-                encryptedBlocks.Add(encryptedBlock);
-
-                previousCipherBlock = encryptedBlock;
-            }
-
-            using (FileStream fs = new FileStream(outputFile, FileMode.Create))
-            {
-                foreach (byte[] block in encryptedBlocks)
+                while (bytesGenerated < Nb * (Nr + 1) * 4)
                 {
-                    fs.Write(block, 0, block.Length);
+                    for (int i = 0; i < 4; i++)
+                    {
+                        temp[i] = keySchedule[bytesGenerated - 4 + i];
+                    }
+
+                    if (bytesGenerated % (Nk * 4) == 0)
+                    {
+                        temp = SubWord(RotWord(temp));
+                        temp[0] ^= (byte)(Rcon(rconIteration) & 0xFF);
+                        rconIteration++;
+                    }
+                    else if (Nk > 6 && bytesGenerated % (Nk * 4) == Nb * 4)
+                    {
+                        temp = SubWord(temp);
+                    }
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        keySchedule[bytesGenerated] = (byte)(keySchedule[bytesGenerated - Nk * 4] ^ temp[i]);
+                        bytesGenerated++;
+                    }
                 }
             }
-        }
 
-        public static void DecryptFile(string inputFile, string outputFile, byte[] key, byte[] iv)
-        {
-            byte[] cipherText = File.ReadAllBytes(inputFile);
-
-            List<byte[]> decryptedBlocks = new List<byte[]>();
-
-            byte[] previousCipherBlock = iv;
-            for (int i = 0; i < cipherText.Length; i += 16)
+            static byte[] SubWord(byte[] word)
             {
-                byte[] blockToDecrypt = new byte[16];
-                Array.Copy(cipherText, i, blockToDecrypt, 0, 16);
-
-                byte[] decryptedBlock = Decrypt(blockToDecrypt, key);
-
-                for (int j = 0; j < 16; j++)
+                for (int i = 0; i < 4; i++)
                 {
-                    decryptedBlock[j] ^= previousCipherBlock[j];
+                    word[i] = sBox[word[i] >> 4, word[i] & 0x0F];
                 }
-
-                decryptedBlocks.Add(decryptedBlock);
-
-                previousCipherBlock = blockToDecrypt;
+                return word;
             }
 
-            byte[] decryptedData = new byte[decryptedBlocks.Count * 16];
-            int offset = 0;
-            foreach (byte[] block in decryptedBlocks)
+            static byte[] RotWord(byte[] word)
             {
-                Array.Copy(block, 0, decryptedData, offset, 16);
-                offset += 16;
+                byte temp = word[0];
+                for (int i = 0; i < 3; i++)
+                {
+                    word[i] = word[i + 1];
+                }
+                word[3] = temp;
+                return word;
             }
 
-            decryptedData = RemovePadding(decryptedData);
+            static int Rcon(int i)
+            {
+                int c = 1;
+                if (i == 0) return 0;
+                while (i != 1)
+                {
+                    c = Mul(c, 2);
+                    i--;
+                }
+                return c << 24;
+            }
 
-            File.WriteAllBytes(outputFile, decryptedData);
+            static int Mul(int a, int b)
+            {
+                int p = 0;
+                while (b != 0)
+                {
+                    if ((b & 1) != 0)
+                    {
+                        p ^= a;
+                    }
+                    if ((a & 0x80) != 0)
+                    {
+                        a = (a << 1) ^ 0x11b;
+                    }
+                    else
+                    {
+                        a <<= 1;
+                    }
+                    b >>= 1;
+                }
+                return p;
+            }
+
+            static void AddRoundKey(int round)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        state[j, i] ^= keySchedule[round * Nb * 4 + i * 4 + j];
+                    }
+                }
+            }
+
+            // Implement SubBytes, ShiftRows, MixColumns, InvSubBytes, InvShiftRows, InvMixColumns
+            //...
+
+            static byte[] GenerateIV()
+            {
+                // Generate initialization vector
+                byte[] iv = new byte[16];
+                Random rnd = new Random();
+                rnd.NextBytes(iv);
+                return iv;
+            }
+
+
         }
-
-      
-        
     }
-}
+
+

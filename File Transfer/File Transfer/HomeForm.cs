@@ -285,39 +285,40 @@ namespace File_Transfer
                     {
                         MessageBox.Show("Target computer is not available.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                   
+
                     else
                     {
 
-                           
-                            selectedOption = CB_AES.SelectedItem.ToString();
-                            if (selectedOption == "128")
-                            {
-                                if (txtKey.TextLength != 32)
-                                {
-                                    MessageBox.Show("Length of key should be 32 for 128 bits key size");
-                                    return;
-                                }
-                            }
-                            if (selectedOption == "192")
-                            {
-                                if (txtKey.TextLength != 48)
-                                {
-                                    MessageBox.Show("Length of key should be 48 for 128 bits key size");
-                                    return;
 
+                        selectedOption = CB_AES.SelectedItem.ToString();
 
-                                }
-                            }
-                            if (selectedOption == "256")
+                        if (selectedOption == "128")
+                        {
+                            if (txtKey.TextLength != 16)
                             {
-                                if (txtKey.TextLength != 64)
-                                {
-                                    MessageBox.Show("Length of key should be 64 for 128 bits key size");
-                                    return;
-                                }
+
+                                MessageBox.Show("Length of key should be 16 for 128 bits key size");
+                                return;
                             }
-                        
+                        }
+                        if (selectedOption == "192")
+                        {
+                            if (txtKey.TextLength != 24)
+                            {
+
+                                MessageBox.Show("Length of key should be 24 for 128 bits key size");
+                                return;
+                            }
+                        }
+                        if (selectedOption == "256")
+                        {
+                            if (txtKey.TextLength != 32)
+                            {
+                                MessageBox.Show("Length of key should be 32 for 128 bits key size");
+                                return;
+                            }
+                        }
+
                         notification = new Thread(new ThreadStart(showNotification));
                         notification.Start();
                         //notificationPanel.Visible = true;
@@ -331,38 +332,48 @@ namespace File_Transfer
                         //Generate random key and IV
 
 
-                           byte[] key = StringToByteArray(txtKey.Text);
-                           byte[] iv = StringToByteArray(txtIV.Text);
+                        string key = txtKey.Text;
 
-                        
-                            string encryptedFilePath = fileNameLabel.Text + ".encrypted";
-                            Class1.EncryptFile(fileNameLabel.Text, encryptedFilePath, key, iv);
-                           // EncryptFile(fileNameLabel.Text, encryptedFilePath, key, iv);
-                       
-                            socketForClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                            socketForClient.Connect(new IPEndPoint(IPAddress.Parse(targetIP), 11000));
-                            string fileName = fileNameLabel.Tag.ToString();
-                            byte[] fileNameData = Encoding.Default.GetBytes(fileName + "@" + this.IP + "@" + Environment.MachineName);
-                            socketForClient.Send(fileNameData);
-                            socketForClient.Shutdown(SocketShutdown.Both);
-                            socketForClient.Close();
+                        // Determine Nk based on key length
+                        if (key.Length == 16) Class1.Nk = 4; // AES-128
+                        else if (key.Length == 24) Class1.Nk = 6; // AES-192
+                        else if (key.Length == 32) Class1.Nk = 8; // AES-256
+                        else throw new ArgumentException("Invalid key length");
 
-                            // Mở kết nối mới và gửi file đã mã hóa
-                            socketForClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                            socketForClient.Connect(new IPEndPoint(IPAddress.Parse(targetIP), 11000));
-                            socketForClient.SendFile(encryptedFilePath);
-                            socketForClient.Shutdown(SocketShutdown.Both);
-                            socketForClient.Close();
-                          
+                        // Determine Nr based on Nk
+                        Class1.Nr = Class1.Nk + 6;
 
-                            // Hiển thị thông báo cho người dùng rằng file đã được gửi thành công
-                            Invoke((MethodInvoker)delegate
-                            {
-                                f2.Dispose();
-                            });
-                            MessageBox.Show("File sent to " + targetIP + " " + targetName, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Generate key schedule
+                        Class1.KeyExpansion(key);
 
-                        
+                        string encryptedFilePath = fileNameLabel.Text + ".encrypted";
+                        Class1.EncryptFile(fileNameLabel.Text, encryptedFilePath, key);
+
+
+                        socketForClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                        socketForClient.Connect(new IPEndPoint(IPAddress.Parse(targetIP), 11000));
+                        string fileName = fileNameLabel.Tag.ToString();
+                        byte[] fileNameData = Encoding.Default.GetBytes(fileName + "@" + this.IP + "@" + Environment.MachineName);
+                        socketForClient.Send(fileNameData);
+                        socketForClient.Shutdown(SocketShutdown.Both);
+                        socketForClient.Close();
+
+                        // Mở kết nối mới và gửi file đã mã hóa
+                        socketForClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                        socketForClient.Connect(new IPEndPoint(IPAddress.Parse(targetIP), 11000));
+                        socketForClient.SendFile(encryptedFilePath);
+                        socketForClient.Shutdown(SocketShutdown.Both);
+                        socketForClient.Close();
+
+
+                        // Hiển thị thông báo cho người dùng rằng file đã được gửi thành công
+                        Invoke((MethodInvoker)delegate
+                        {
+                            f2.Dispose();
+                        });
+                        MessageBox.Show("File sent to " + targetIP + " " + targetName, "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                     }
                 }
                 catch (Exception ex)
@@ -372,8 +383,10 @@ namespace File_Transfer
                     {
                         socketForClient.Shutdown(SocketShutdown.Both);
                         socketForClient.Close();
+                       
                     }
                 }
+
                 finally
                 {
                     for (int i = 0; i < onlinePCList.SelectedIndices.Count; i++)
@@ -439,7 +452,6 @@ namespace File_Transfer
         {
             fileNameLabel.Text = ".";
             txtKey.Text = "";
-            txtIV.Text = "";
             timer1.Stop();
         }
 
@@ -520,8 +532,8 @@ namespace File_Transfer
             try
             {
                 // Đọc key từ trường văn bản
-                byte[] key = StringToByteArray(txtKey.Text);
-                byte[] iv = StringToByteArray(txtIV.Text);
+                string key = txtKey.Text;
+                
 
                 // Lấy đường dẫn file đã được mã hóa
                 string encryptedFilePath = fileNameLabel.Text;
@@ -529,8 +541,19 @@ namespace File_Transfer
                 // Tạo đường dẫn cho file giải mã
                 string decryptedFilePath = Path.Combine(savePathLabel.Text, "Decrypted.txt");
 
+                // Determine Nk based on key length
+                if (key.Length == 16) Class1.Nk = 4; // AES-128
+                else if (key.Length == 24) Class1.Nk = 6; // AES-192
+                else if (key.Length == 32) Class1.Nk = 8; // AES-256
+                else throw new ArgumentException("Invalid key length");
+
+                // Determine Nr based on Nk
+                Class1.Nr = Class1.Nk + 6;
+
+                // Generate key schedule
+                Class1.KeyExpansion(key);
                 // Giải mã file
-                Class1.DecryptFile(encryptedFilePath, decryptedFilePath, key,iv);
+                Class1.DecryptFile(encryptedFilePath, decryptedFilePath, key);
               
                 MessageBox.Show("File đã được giải mã và lưu tại: " + decryptedFilePath, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -539,22 +562,6 @@ namespace File_Transfer
                 MessageBox.Show("Đã xảy ra lỗi khi giải mã file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        static byte[] StringToByteArray(string hex)
-        {
-            hex = hex.Replace(" ", ""); // Remove any spaces
-            int length = hex.Length;
-            
-            //if (length % 2 != 0)
-            //{
-            //    throw new ArgumentException("Invalid hexadecimal string: length must be even.");
-            //}
-
-            byte[] bytes = new byte[length / 2];
-            for (int i = 0; i < length; i += 2)
-            {
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            }
-            return bytes;
-        }
+        
     }
 }

@@ -55,8 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Decrypt = new System.Windows.Forms.Button();
-            this.txtIV = new System.Windows.Forms.TextBox();
-            this.IV = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.notificationPanel.SuspendLayout();
             this.SuspendLayout();
@@ -214,7 +212,7 @@
             this.sendFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sendFileButton.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendFileButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.sendFileButton.Location = new System.Drawing.Point(326, 512);
+            this.sendFileButton.Location = new System.Drawing.Point(327, 512);
             this.sendFileButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sendFileButton.Name = "sendFileButton";
             this.sendFileButton.Size = new System.Drawing.Size(329, 52);
@@ -373,30 +371,12 @@
             this.btn_Decrypt.UseVisualStyleBackColor = false;
             this.btn_Decrypt.Click += new System.EventHandler(this.btn_Decrypt_Click);
             // 
-            // txtIV
-            // 
-            this.txtIV.Location = new System.Drawing.Point(59, 439);
-            this.txtIV.Name = "txtIV";
-            this.txtIV.Size = new System.Drawing.Size(382, 26);
-            this.txtIV.TabIndex = 19;
-            // 
-            // IV
-            // 
-            this.IV.AutoSize = true;
-            this.IV.Location = new System.Drawing.Point(18, 442);
-            this.IV.Name = "IV";
-            this.IV.Size = new System.Drawing.Size(29, 20);
-            this.IV.TabIndex = 20;
-            this.IV.Text = "IV:";
-            // 
             // txt_OutputFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(834, 585);
-            this.Controls.Add(this.IV);
-            this.Controls.Add(this.txtIV);
             this.Controls.Add(this.btn_Decrypt);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -458,8 +438,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_Decrypt;
-        private System.Windows.Forms.TextBox txtIV;
-        private System.Windows.Forms.Label IV;
     }
 }
 
