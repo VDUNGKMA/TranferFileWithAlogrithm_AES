@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|c:\\users\\administrator\\desktop\\tranferfilewithalogrithm_aes\\file transfer\\file transfer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|c:\\users\\administrator\\desktop\\tranferfilewithalogrithm_aes\\file transfer\\file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\notificationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\notificationform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|solutionrelative:file transfer\\homeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5611CEB-A301-4CEC-9B1A-2CE6D9EF5274}|File Transfer\\File Transfer.csproj|C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\file transfer\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,30 +30,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\Class1.cs",
               "RelativeDocumentMoniker": "File Transfer\\Class1.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\Class1.cs",
               "RelativeToolTip": "File Transfer\\Class1.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwCkBAAAZAAAA",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAgwJwBAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T02:00:54.319Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-09T02:00:54.319Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "NotificationForm.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\NotificationForm.cs",
               "RelativeDocumentMoniker": "File Transfer\\NotificationForm.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\NotificationForm.cs",
               "RelativeToolTip": "File Transfer\\NotificationForm.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAuwAAAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAA+wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-01T16:11:24.71Z"
             },
@@ -71,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "HomeForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\HomeForm.cs",
               "RelativeDocumentMoniker": "File Transfer\\HomeForm.cs",
@@ -83,13 +82,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "HomeForm.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\HomeForm.cs",
               "RelativeDocumentMoniker": "File Transfer\\HomeForm.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\TranferFileWithAlogrithm_AES\\File Transfer\\File Transfer\\HomeForm.cs",
               "RelativeToolTip": "File Transfer\\HomeForm.cs",
-              "ViewState": "AQIAABoCAAAAAAAAAAAAACsCAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoBAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-23T07:17:37.665Z",
               "EditorCaption": ""

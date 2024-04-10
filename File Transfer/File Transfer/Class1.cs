@@ -59,33 +59,7 @@ namespace File_Transfer
             static byte[] keySchedule; // Expanded key schedule
 
             static byte[,] state = new byte[4, 4]; // AES state matrix
-            //static void Main(string[] args)
-            //{
-            //    string inputFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\input.txt";
-            //    string encryptedFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\ecrypt.txt";
-            //    string decryptedFile = "C:\\Users\\Administrator\\Documents\\Môn học\\Cơ sở an toàn bảo mật thông tin\\CBC\\EC\\EC\\decrypt.txt";
-            //    string key = "abcdefghijklmnopqrstuvwx"; // 24-byte key for AES-192
-
-            //    // Determine Nk based on key length
-            //    if (key.Length == 16) Nk = 4; // AES-128
-            //    else if (key.Length == 24) Nk = 6; // AES-192
-            //    else if (key.Length == 32) Nk = 8; // AES-256
-            //    else throw new ArgumentException("Invalid key length");
-
-            //    // Determine Nr based on Nk
-            //    Nr = Nk + 6;
-
-            //    // Generate key schedule
-            //    KeyExpansion(key);
-
-            //    // Encrypt file
-            //    //EncryptFile(inputFile, encryptedFile, key);
-
-            //    // Decrypt file
-            //    DecryptFile(encryptedFile, decryptedFile, key);
-
-            //    Console.WriteLine("Encryption and decryption completed.");
-            //}
+          
             static void SubBytes()
             {
                 for (int i = 0; i < 4; i++)
@@ -192,10 +166,10 @@ namespace File_Transfer
             {
                 byte[,] temp = new byte[4, 4]
                 {
-        { 0x0E, 0x0B, 0x0D, 0x09 },
-        { 0x09, 0x0E, 0x0B, 0x0D },
-        { 0x0D, 0x09, 0x0E, 0x0B },
-        { 0x0B, 0x0D, 0x09, 0x0E }
+                    { 0x0E, 0x0B, 0x0D, 0x09 },
+                    { 0x09, 0x0E, 0x0B, 0x0D },
+                    { 0x0D, 0x09, 0x0E, 0x0B },
+                    { 0x0B, 0x0D, 0x09, 0x0E }
                 };
 
                 byte[,] result = new byte[4, 4];
